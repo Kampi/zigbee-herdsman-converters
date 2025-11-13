@@ -5567,3 +5567,36 @@ export const TS110E_switch_type: Fz.Converter<"genLevelCtrl", undefined, ["attri
         return result;
     },
 };
+// biome-ignore lint/style/useNamingConvention: ignored using `--suppress`
+exports.BeeLight_iaq = {
+    cluster: 'msIAQ',
+    type: ['attributeReport', 'readResponse'],
+    convert: (model, msg, publish, options, meta) => {
+		const iaq = msg.data['measuredValue'];
+		const tolerance = msg.data['tolerance'];
+		const property = (0, utils_1.postfixWithEndpointName)('iaq', msg, model, meta);
+		return { [property]: iaq };
+    },
+};
+// biome-ignore lint/style/useNamingConvention: ignored using `--suppress`
+exports.BeeLight_voc= {
+    cluster: 'msVOC',
+    type: ['attributeReport', 'readResponse'],
+    convert: (model, msg, publish, options, meta) => {
+		const voc = msg.data['measuredValue'];
+		const tolerance = msg.data['tolerance'];
+		const property = (0, utils_1.postfixWithEndpointName)('voc', msg, model, meta);
+		return { [property]: voc };
+    },
+};
+// biome-ignore lint/style/useNamingConvention: ignored using `--suppress`
+exports.BeeLight_co2 = {
+    cluster: 'msCO2',
+    type: ['attributeReport', 'readResponse'],
+    convert: (model, msg, publish, options, meta) => {
+		const co2 = msg.data['measuredValue'];
+		const tolerance = msg.data['tolerance'];
+		const property = (0, utils_1.postfixWithEndpointName)('co2', msg, model, meta);
+		return { [property]: co2 };
+    },
+};
