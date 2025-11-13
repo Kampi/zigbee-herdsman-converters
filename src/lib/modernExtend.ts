@@ -793,6 +793,48 @@ export function customTimeResponse(start: "1970_UTC" | "2000_LOCAL"): ModernExte
 
 // #region Measurement and Sensing
 
+function BeeLight_iaq(args: Partial<NumericArgs<"msIAQ">> = {}): ModernExtend {
+    return numeric({
+        name: "BeeLight_iaq",
+        cluster: "msIAQ",
+        attribute: "measuredValue",
+        reporting: { min: "10_SECONDS", max: "1_HOUR", change: 100 },
+        description: "Measured IAQ value",
+        unit: "",
+        scale: 1,
+        access: "STATE_GET",
+        ...args,
+    });
+}
+
+function BeeLight_co2(args: Partial<NumericArgs<"msCO2">> = {}): ModernExtend {
+    return numeric({
+        name: "BeeLight_co2",
+        cluster: "msCO2",
+        attribute: "measuredValue",
+        reporting: { min: "10_SECONDS", max: "1_HOUR", change: 100 },
+        description: "Measured CO2 value",
+        unit: "ppm",
+        scale: 1,
+        access: "STATE_GET",
+        ...args,
+    });
+}
+
+function BeeLight_voc(args: Partial<NumericArgs<"msVOC">> = {}): ModernExtend {
+    return numeric({
+        name: "BeeLight_voc",
+        cluster: "msVOC",
+        attribute: "measuredValue",
+        reporting: { min: "10_SECONDS", max: "1_HOUR", change: 100 },
+        description: "Measured VOC value",
+        unit: "ppm",
+        scale: 1,
+        access: "STATE_GET",
+        ...args,
+    });
+}
+
 export function illuminance(args: Partial<NumericArgs<"msIlluminanceMeasurement">> = {}): ModernExtend {
     const luxScale: ScaleFunction = (value: number, type: "from" | "to") => {
         let result = value;
